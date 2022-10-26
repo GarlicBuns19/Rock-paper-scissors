@@ -4,35 +4,30 @@
 
     <div class="hand">
       <div>
-        <button>Rock</button>
-        <button>Paper</button>
-        <button>Scissors</button>
+        <button @click="inhand('rock1')" id="rock1">Rock</button>
+        <button @click="inhand('paper1')" id="paper1">Paper</button>
+        <button @click="inhand('sciccors')" id="sciccors">Scissors</button>
       </div>
 
-      <div>
-        P1
-      </div>
+      <div id="player1">P1 = {{ output }}</div>
+
+      <div id="player2">{{ output }} = P2</div>
 
       <div>
-        P2
-      </div>
-
-      <div>
-        <button>Rock</button>
-        <button>Paper</button>
-        <button>Scissors</button>
+        <button @click="inhand('rock2') " id="rock2">Rock</button>
+        <button @click="inhand('paper2')" id="paper2">Paper</button>
+        <button @click="inhand('scissors3')" id="scissors3">Scissors</button>
       </div>
     </div>
-    
   </div>
 </template>
 
 <style scoped>
-.home{
+.home {
   max-width: 700px;
   margin: 0 auto;
 }
-.hand{
+.hand {
   display: flex;
   /* flex-flow: column; */
   justify-content: space-around;
@@ -50,5 +45,30 @@
 </style>
 
 <script>
-export default {};
+import { ref } from "@vue/reactivity";
+import { onMounted } from "@vue/runtime-core";
+
+export default {
+  setup() {
+    const output = ref("");
+    const play = ref(false)
+    
+    const inhand = (rps) => {
+      const p1 = document.getElementById("player1");
+      const p2 = document.getElementById("player2");
+
+      console.log(rps);
+      // console.log(p1.innerHTML)
+      if (p1.innerHTML) {
+        output.value = rps;
+      }
+      if (p2.innerHTML) {
+        output.value = rps;
+      }
+    };
+
+    return { inhand, output , play };
+    // onMounted(() => {});
+  },
+};
 </script>
