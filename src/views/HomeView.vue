@@ -6,12 +6,12 @@
       <div>
         <button @click="inhand('rock1')" id="rock1">Rock</button>
         <button @click="inhand('paper1')" id="paper1">Paper</button>
-        <button @click="inhand('sciccors')" id="sciccors">Scissors</button>
+        <button @click="inhand('sciccors1')" id="sciccors">Scissors</button>
       </div>
 
-      <div id="player1">P1 = {{ output }}</div>
+      <div id="player1">P1 = {{ output1 }}</div>
 
-      <div id="player2">{{ output }} = P2</div>
+      <div id="player2">{{ output2 }} = P2</div>
 
       <div>
         <button @click="inhand('rock2') " id="rock2">Rock</button>
@@ -46,29 +46,26 @@
 
 <script>
 import { ref } from "@vue/reactivity";
-import { onMounted } from "@vue/runtime-core";
 
 export default {
   setup() {
-    const output = ref("");
+    const output1 = ref("");
+    const output2 = ref("");
     const play = ref(false)
+    const p1 = document.getElementById("player1");
+    const p2 = document.getElementById("player2");
     
     const inhand = (rps) => {
-      const p1 = document.getElementById("player1");
-      const p2 = document.getElementById("player2");
-
       console.log(rps);
-      // console.log(p1.innerHTML)
-      if (p1.innerHTML) {
-        output.value = rps;
+      if (rps.includes('1')) {
+        output1.value = rps;
       }
-      if (p2.innerHTML) {
-        output.value = rps;
+      if (rps.includes('2')) {
+        output2.value = rps;
       }
     };
 
-    return { inhand, output , play };
-    // onMounted(() => {});
+    return { inhand, output1 , output2 , play };
   },
 };
 </script>
